@@ -1,0 +1,27 @@
+{
+  "name": "@monorepo/foo",
+  "version": "0.0.0",
+  "sideEffects": false,
+  "repository": "git://github.com/renli-tech/monorepo.git",
+  "author": "opeabidemi <opeabidemi@gmail.com>",
+  "license": "MIT",
+  "files": [
+    "src",
+    "dist"
+  ],
+  "scripts": {
+    "test":"jest "
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  }
+}

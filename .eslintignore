@@ -1,0 +1,16 @@
+*.min.js
+**/node_modules/**
+
+# types and commitlint
+commitlint.config.js
+react-app-env.d.ts
+docs
+examples
+
+# ignore built packages
+packages/**/dist/**
+packages/**/build/**
+
+# fixtures
+**/__testfixtures__/**
+**/__tests__/fixtures/**

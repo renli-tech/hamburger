@@ -1,0 +1,89 @@
+{
+  "name": "monorepo",
+  "repository": "git://github.com/renli-tech/monorepo.git",
+  "private": true,
+  "author": "opeabidemi <opeabidemi@gmail.com>",
+  "workspaces": {
+    "packages": [
+      "packages/*",
+      "examples/*"
+    ],
+    "nohoist": [
+      "**/babel**",
+      "**/eslint**",
+      "**/jest"
+    ]
+  },
+  "scripts": {
+    "bootstrap": "lerna bootstrap --use-workspaces && yarn hooks:install",
+    "fix": "run-s fix:*",
+    "fix:code": "yarn lint:code --fix",
+    "fix:other": "yarn prettier --write",
+    "hooks:uninstall": "node node_modules/husky uninstall",
+    "hooks:install": "node node_modules/husky install",
+    "lerna:publish": "npx lerna publish --conventional-commits",
+    "lerna:changed": "npx lerna changed",
+    "lint": "run-p --continue-on-error lint:*",
+    "lint:code": "eslint --ignore-path .gitignore --ignore-path .prettierignore --ext .ts,.tsx .",
+    "lint:other": "yarn prettier --check",
+    "prebootstrap": "yarn",
+    "prettier": "prettier \"**/*.{md,css,scss,yaml,yml}\"",
+    "test": "lerna run --stream test"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.15.0",
+    "@babel/eslint-parser": "^7.15.0",
+    "@babel/node": "^7.14.9",
+    "@babel/preset-env": "^7.15.0",
+    "@babel/runtime": "^7.15.3",
+    "@commitlint/cli": "^13.1.0",
+    "@commitlint/config-conventional": "^13.1.0",
+    "@commitlint/config-lerna-scopes": "^13.1.0",
+    "@types/jest": "^27.0.1",
+    "@types/node": "^16.6.1",
+    "@types/prettier": "^2.3.2",
+    "@typescript-eslint/eslint-plugin": "^4.29.2",
+    "@typescript-eslint/parser": "^4.29.2",
+    "babel-jest": "^27.0.6",
+    "babel-loader": "^8.2.2",
+    "chalk": "^4.1.2",
+    "commitlint": "^13.1.0",
+    "cross-env": "^7.0.3",
+    "eslint": "^7.32.0",
+    "eslint-config-prettier": "^8.3.0",
+    "eslint-plugin-prettier": "^3.4.1",
+    "eslint-plugin-jest": "^24.4.0",
+    "husky": "^7.0.2",
+    "jest": "^27.0.6",
+    "lerna": "^4.0.0",
+    "lerna-changelog": "^2.1.0",
+    "lint-staged": "^11.1.2",
+    "npm-run-all": "^4.1.5",
+    "prettier": "^2.3.2",
+    "prettier-eslint": "^13.0.0",
+    "rimraf": "^3.0.2",
+    "ts-jest": "^27.0.5",
+    "ts-node": "^10.2.0",
+    "typescript": "^4.3.5"
+  },
+  "engines": {
+    "node": ">=10.17.0"
+  },
+  "lint-staged": {
+    "*.{js,jsx,ts,tsx}": [
+      "yarn fix:code"
+    ],
+    "*.{md,css,scss,yaml,yml}": [
+      "yarn fix:other"
+    ]
+  },
+  "browserslist": [
+    "last 2 Chrome versions",
+    "last 2 Opera versions",
+    "last 2 Firefox versions",
+    "last 2 Edge versions",
+    "last 2 Safari versions",
+    "last 2 iOS versions",
+    "last 2 ChromeAndroid versions"
+  ]
+}
