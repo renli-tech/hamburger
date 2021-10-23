@@ -1,17 +1,16 @@
-# monorepo
+# Hamburger
 
-A template for monorepo projects
+A template for fullstack projects
 
-> The word monorepo is a combination between “mono”, as in the Greek word mónos (in translation, alone) and an abbreviation of the word repository. A simple concept if taken verbatim: one lonely repository. The domain is software engineering so we’re referring to a home for source code, multimedia assets, binary files, and so on. But this definition is just the tip of the iceberg, since a monorepo in practice is so much more.
+> a burger without cheese is like a hug without a squeeze.
 
 ### 😎 Guide
 
-The monorepo structure is managed with [Lerna](https://lerna.js.org/)
+The monorepo structure is managed with [Lerna](https://lerna.js.org/) and created out of the [Renli Monorepo Template](https://github.com/renli-tech/monorepo)
 
 ### 🧩 Branches
 
 - [Master](./) - with default configuration
-- [With Rollup](https://github.com/renli-tech/monorepo/tree/with-rollup) - with [Rollup](https://rollupjs.org/guide/en/) configuration for bundling files
 
 #### 😋 Features
 
