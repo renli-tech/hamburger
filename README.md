@@ -1,4 +1,4 @@
-# Hamburger
+# Hamburger 🍔🍔
 
 A template for fullstack projects
 
