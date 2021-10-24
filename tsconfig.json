@@ -2,7 +2,10 @@
   "compilerOptions": {
     "target": "es5",
     "module": "esnext",
-    "lib": ["esnext", "DOM"],
+    "lib": [
+      "esnext",
+      "DOM"
+    ],
     "declaration": true,
     "declarationMap": true,
     "skipLibCheck": true,
@@ -25,8 +28,11 @@
     "resolveJsonModule": true,
     "baseUrl": "."
   },
-  "exclude": ["node_modules"],
+  "exclude": [
+    "node_modules"
+  ],
   "include": [
     "packages/*/src"
-  ]
+  ],
+  "extends": "expo/tsconfig.base"
 }
