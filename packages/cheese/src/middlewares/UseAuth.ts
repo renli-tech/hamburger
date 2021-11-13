@@ -1,6 +1,6 @@
 import { AuthenticationError } from "apollo-server-express";
 import { createMethodDecorator } from "type-graphql";
-import { Role } from "../entity/User";
+import { Role } from "../entities/user";
 import { ResolverContext } from "../modules/resolverContext";
 
 // Just for checking roles and auth

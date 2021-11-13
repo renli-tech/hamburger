@@ -1,15 +1,13 @@
 /* eslint-disable @typescript-eslint/ban-types */
 import * as glob from "glob";
 
-import { RESOLVER_PATHS } from "./config";
-
 export type NonEmptyArray<TItem> =
   | readonly [TItem, ...TItem[]]
   | [TItem, ...TItem[]];
 export type Resolvers = NonEmptyArray<Function> | NonEmptyArray<string>;
 
 export function loadResolvers(): Resolvers {
-  const filePaths = glob.sync(__dirname + RESOLVER_PATHS);
+  const filePaths = glob.sync(__dirname + "/**/*.resolver.{js,ts}");
   const modules: { resolvers: Function[]; default: Function }[] =
     filePaths.map(require);
   return modules

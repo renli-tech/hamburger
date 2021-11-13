@@ -4,7 +4,7 @@ import * as glob from "glob";
 export type Entities = Array<Function> | Array<string>;
 
 export function loadEntities(): Entities {
-  const filePaths = glob.sync(__dirname + "/entity/**/*.{js,ts}");
+  const filePaths = glob.sync(__dirname + "/../**/*.entity.{js,ts}");
   const modules: { entities: Function[]; default: Function }[] =
     filePaths.map(require);
   return modules

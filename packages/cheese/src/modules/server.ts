@@ -1,24 +1,17 @@
 import Express, { Application } from "express";
-import chalk from "chalk";
 import { GRAPHQL_PATH, PORT } from "../config";
 import { createServer, Server as HTTPServer } from "http";
+import { Logger } from "./Logger";
 
 class Server {
   private readonly _app: Application;
   private readonly _server: HTTPServer;
 
-  readonly logger: {
-    info: (message: string) => void;
-    error: (message: string) => void;
-  };
+  readonly logger = Logger;
 
   constructor() {
     this._app = Express();
     this._server = createServer(this.app);
-    this.logger = {
-      info: this.info,
-      error: this.error,
-    };
   }
 
   protected get app(): Application {
@@ -29,19 +22,14 @@ class Server {
     return this._server;
   }
 
-  protected error(message: string): void {
-    console.log(`[${chalk.red("ERROR")}] `, message);
-  }
-  protected info(message: string): void {
-    console.log(`[${chalk.blue("INFO")}] `, chalk.green(message));
-  }
-
-  start(): void {
+  async start(): Promise<void> {
     this._server.listen(PORT, () =>
-      this.logger.info(
+      this.logger.success(
         `Server started at http://localhost:${PORT}${GRAPHQL_PATH} 🚀` + "\n"
       )
     );
+
+    return;
   }
 }
 

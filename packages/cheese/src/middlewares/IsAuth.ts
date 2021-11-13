@@ -1,6 +1,6 @@
 import { MiddlewareFn } from "type-graphql";
 import { APP_AUTH_SECRET } from "../config";
-import User from "../entity/User";
+import { User } from "../entities/user";
 import { ExpressContext } from "../modules/express";
 import { decryptToken } from "../modules/jwt";
 

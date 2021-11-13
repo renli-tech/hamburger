@@ -1,5 +1,5 @@
 import { createParamDecorator } from "type-graphql";
-import User from "../entity/User";
+import { User } from "../entities/user";
 import { ResolverContext } from "../modules/resolverContext";
 
 export function ContextUser(): ParameterDecorator {

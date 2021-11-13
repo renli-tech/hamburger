@@ -3,21 +3,21 @@ import "dotenv/config";
 import Server from "./modules/server";
 import jwt, { Options } from "express-jwt";
 import cookieParser from "cookie-parser";
-import { buildSchema } from "type-graphql";
-import Container from "typedi";
-import { loadResolvers } from "./loadResolvers";
 import { ApolloServer } from "apollo-server-express";
 import { ExpressContext } from "./modules/express";
-import {
-  ApolloServerPluginCacheControl,
-  ApolloServerPluginLandingPageGraphQLPlayground,
-} from "apollo-server-core";
 import { createConnection } from "typeorm";
 import { JWT_AUTH } from "./config";
 import { PubSub } from "graphql-subscriptions";
-import getConnection from "./modules/readORMConfig";
-import { loadEntities } from "./loadEntities";
-class App extends Server {
+import getConnection from "./helpers/getConnection";
+import { loadEntities } from "./helpers/loadEntities";
+import * as User from "./entities/user";
+import { ApolloGateway, ServiceEndpointDefinition } from "@apollo/gateway";
+import chalk from "chalk";
+
+/**
+ * The Cheese
+ */
+class Cheese extends Server {
   constructor() {
     super();
     this.init().catch((error) => {
@@ -26,13 +26,21 @@ class App extends Server {
     });
   }
 
+  /**
+   * @description Initializing the world cheeses server
+   * Basically the entry point
+   */
   async init() {
     await this.setUpAuth();
     await this.setUpDb();
     await this.setupApollo();
-    this.start();
+    await this.start();
+    this.logger.success(chalk.bgYellow("[CHEESE]") + ": Setup Completed");
   }
 
+  /**
+   * @description Setting up Authentication with JWT
+   */
   async setUpAuth() {
     this.app
       .use(jwt(JWT_AUTH as Options))
@@ -44,13 +52,20 @@ class App extends Server {
     this.logger.info("Auth ready");
   }
 
+  /**
+   * @description Setting up the Database
+   */
   async setUpDb() {
     const config = await getConnection().then((connection) => {
-      return { ...connection, entities: loadEntities() };
+      return {
+        ...connection,
+        entities: loadEntities(),
+        useUnifiedTopology: true,
+      };
     });
     createConnection(config)
       .then(async () => {
-        this.logger.info("Database Connected");
+        this.logger.success("Database Connected");
       })
       .catch((err) => {
         this.logger.error("Error connecting to database " + err);
@@ -58,23 +73,32 @@ class App extends Server {
   }
 
   async setupApollo() {
+    // PubSub
     const pubSub = new PubSub();
-    const schema = await buildSchema({
-      container: Container,
-      resolvers: loadResolvers(),
+
+    // Service List
+    const serviceList: ServiceEndpointDefinition[] = [
+      { name: "user", url: await User.init() },
+    ];
+
+    // Gateway
+    const gateway = new ApolloGateway({
+      serviceList,
     });
+
+    const { schema, executor } = await gateway.load();
+
     const apolloServer = new ApolloServer({
       context: ({ req, res }: ExpressContext) => ({ req, res, pubSub }),
-      plugins: [
-        ApolloServerPluginCacheControl(),
-        ApolloServerPluginLandingPageGraphQLPlayground(),
-      ],
       schema,
+      executor,
     });
+
+    // Starting the Apollo server
     await apolloServer.start();
     apolloServer.applyMiddleware({ app: this.app, cors: true });
-    this.logger.info("Apollo setup correctly");
+    this.logger.success("Apollo setup correctly");
   }
 }
 
-new App();
+new Cheese();
