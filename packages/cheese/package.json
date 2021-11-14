@@ -47,7 +47,7 @@
     "express-jwt": "6.1.0",
     "glob": "7.2.0",
     "jsonwebtoken": "8.5.1",
-    "mongodb": "3.7.3",
+    "mongodb": "4.1.4",
     "nodemailer": "6.7.0",
     "reflect-metadata": "0.1.13",
     "type-graphql": "1.1.1",
