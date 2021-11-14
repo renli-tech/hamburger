@@ -26,11 +26,23 @@
     // autocomplete paths
     "paths": {
       "*": [
-        "assets/*"
+        "assets/*",
+        "screens/*",
+        "navigators/*",
+        "components/*",
       ],
       "assets/*": [
         "assets/*"
-      ]
+      ],
+      "screens/*": [
+        "assets/*"
+      ],
+      "components/*": [
+        "assets/*"
+      ],
+      "navigators/*": [
+        "assets/*"
+      ],
     },
     "removeComments": true,
     "typeRoots": [
