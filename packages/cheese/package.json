@@ -1,5 +1,6 @@
 {
   "name": "@hamburger/cheese",
+  "description": "Nodejs GraphQl Server built with Apollo Federation and Express",
   "version": "0.0.0",
   "sideEffects": false,
   "repository": "git://github.com/renli-tech/hamburger.git",

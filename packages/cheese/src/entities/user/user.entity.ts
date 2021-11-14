@@ -16,6 +16,8 @@ class User extends BaseEntity {
   @Directive("@external")
   @Field()
   username: string;
+
+  role: Role;
 }
 
 export default User;
