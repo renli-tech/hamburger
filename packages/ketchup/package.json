@@ -1,5 +1,6 @@
 {
   "name": "@hamburger/ketchup",
+  "description": "Contains reusable stuffs like hooks and helpers",
   "version": "0.0.0",
   "sideEffects": false,
   "repository": "git://github.com/renli-tech/hamburger.git",
