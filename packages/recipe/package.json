@@ -1,0 +1,16 @@
+{
+  "name": "@hamburger/recipe",
+  "description": "Contains themes,colors and design system",
+  "version": "0.0.0",
+  "sideEffects": false,
+  "repository": "git://github.com/renli-tech/hamburger.git",
+  "author": "opeabidemi <opeabidemi@gmail.com>",
+  "license": "MIT",
+  "files": [
+    "src",
+    "dist"
+  ],
+  "scripts": {
+    "test": "jest "
+  }
+}
