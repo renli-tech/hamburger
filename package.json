@@ -16,7 +16,7 @@
   },
   "scripts": {
     "dev": "run-p dev:*",
-    "dev:app": "yarn --cwd ./packages/app expo start --host tunnel ",
+    "dev:meat": "yarn --cwd ./packages/meat expo start --host tunnel ",
     "dev:cheese": "yarn --cwd ./packages/cheese run dev ",
     "bootstrap": "lerna bootstrap --use-workspaces && yarn hooks:install",
     "fix": "run-s fix:*",
@@ -27,6 +27,7 @@
     "lint": "run-p --continue-on-error lint:*",
     "lint:code": "eslint --ignore-path .gitignore --ignore-path .prettierignore --ext .ts,.tsx .",
     "lint:other": "yarn prettier --check",
+    "postinstall": "cd ./packages/meat && expo-yarn-workspaces postinstall",
     "prebootstrap": "yarn",
     "prettier": "prettier \"**/*.{md,css,scss,yaml,yml}\"",
     "test": "lerna run --stream test",
