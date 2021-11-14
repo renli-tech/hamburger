@@ -58,8 +58,6 @@
     "eslint": "8.2.0",
     "eslint-config-prettier": "8.3.0",
     "eslint-plugin-jest": "25.2.4",
-    "eslint-plugin-prettier": "3.4.1",
-    "expo": "42.0.5",
     "fs-extra": "10.0.0",
     "husky": "7.0.4",
     "inquirer": "8.2.0",
