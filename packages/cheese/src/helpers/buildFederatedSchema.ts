@@ -12,7 +12,7 @@ import Container from "typedi";
 
 export async function buildFederatedSchema(
   options: Omit<BuildSchemaOptions, "skipCheck">,
-  referenceResolvers?: GraphQLResolverMap<any>
+  referenceResolvers?: GraphQLResolverMap<unknown>
 ): Promise<GraphQLSchema> {
   const schema = await buildSchema({
     ...options,
@@ -23,7 +23,7 @@ export async function buildFederatedSchema(
 
   const federatedSchema = buildSubgraphSchema({
     typeDefs: gql(printSchema(schema)),
-    resolvers: createResolversMap(schema) as any,
+    resolvers: createResolversMap(schema) as unknown,
   });
 
   if (referenceResolvers) {
