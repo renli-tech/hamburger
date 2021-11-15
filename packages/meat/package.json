@@ -50,6 +50,7 @@
   },
   "devDependencies": {
     "@babel/core": "7.16.0",
+    "@hamburger/recipe":"0.0.0",
     "@types/react": "17.0.34",
     "@types/react-native": "0.64.19",
     "expo-yarn-workspaces": "1.6.0",

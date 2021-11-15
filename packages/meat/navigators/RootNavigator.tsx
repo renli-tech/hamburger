@@ -3,6 +3,7 @@ import { createStackNavigator } from "@react-navigation/stack";
 import React from "react";
 import AuthNavigator from "./AuthNavigator";
 import MainNavigator from "./MainNavigator";
+import { theme } from "@hamburger/recipe";
 
 export type RootNavigatorScreenList = {
   Main: undefined;
@@ -21,3 +22,5 @@ export const RootNavigator: React.FC<unknown> = () => {
     </NavigationContainer>
   );
 };
+
+export default RootNavigator;
