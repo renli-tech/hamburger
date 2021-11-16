@@ -6,4 +6,6 @@ export const theme = {
     // Changing initialColorMode to 'dark'
     initialColorMode: "dark",
   },
-};
+} as const;
+
+export type Theme = keyof typeof theme;

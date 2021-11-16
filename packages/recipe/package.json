@@ -14,7 +14,7 @@
     "dist"
   ],
   "scripts": {
-    "dev": "rollup -c rollup.config.ts -w",
+    "dev": "rollup -c rollup.config.js -w",
     "prebuild": "rimraf dist",
     "build": "tsc --module commonjs && rollup -c rollup.config.ts && typedoc --out docs --target es6 --theme minimal --mode file src",
     "test": "jest "
