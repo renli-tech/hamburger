@@ -1,0 +1,39 @@
+{
+  "name": "@hamburger/lettuce",
+  "description": "Contains Graphql codegen hooks and type definitions",
+  "version": "0.0.0",
+  "sideEffects": false,
+  "repository": "git://github.com/renli-tech/hamburger.git",
+  "author": "opeabidemi <opeabidemi@gmail.com>",
+  "license": "MIT",
+  "main": "dist/index.js",
+  "module": "dist/index.esm.js",
+  "typings": "dist/index.d.ts",
+  "files": [
+    "src",
+    "dist"
+  ],
+  "scripts": {
+    "dev": "rollup -c rollup.config.js -w",
+    "prebuild": "rimraf dist",
+    "generate": "graphql-codegen",
+    "generate:watch": "graphql-codegen --watch",
+    "build": "tsc --module commonjs && rollup -c rollup.config.ts && typedoc --out docs --target es6 --theme minimal --mode file src",
+    "test": "jest "
+  },
+  "dependencies": {
+    "@apollo/client": "^3.4.17",
+    "@graphql-codegen/add": "^3.1.0",
+    "@graphql-codegen/cli": "^2.3.0",
+    "@graphql-codegen/typescript": "^2.4.0",
+    "@graphql-codegen/typescript-operations": "^2.2.0",
+    "@graphql-codegen/typescript-react-apollo": "^3.2.1",
+    "@types/react": "^17.0.35",
+    "@types/react-native": "^0.66.4",
+    "graphql": "^15.5.3",
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2",
+    "react-native": "^0.66.3",
+    "react-use": "^17.3.1"
+  }
+}
