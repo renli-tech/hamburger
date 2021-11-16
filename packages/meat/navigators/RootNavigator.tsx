@@ -3,7 +3,6 @@ import { createStackNavigator } from "@react-navigation/stack";
 import React from "react";
 import AuthNavigator from "./AuthNavigator";
 import MainNavigator from "./MainNavigator";
-import { theme } from "@hamburger/recipe";
 
 export type RootNavigatorScreenList = {
   Main: undefined;
