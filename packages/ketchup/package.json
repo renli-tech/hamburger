@@ -6,11 +6,27 @@
   "repository": "git://github.com/renli-tech/hamburger.git",
   "author": "opeabidemi <opeabidemi@gmail.com>",
   "license": "MIT",
+  "main": "dist/index.js",
+  "module": "dist/index.esm.js",
+  "typings": "dist/index.d.ts",
   "files": [
     "src",
     "dist"
   ],
   "scripts": {
+    "dev": "rollup -c rollup.config.js -w",
+    "prebuild": "rimraf dist",
+    "build": "tsc --module commonjs && rollup -c rollup.config.ts && typedoc --out docs --target es6 --theme minimal --mode file src",
     "test": "jest "
+  },
+  "dependencies": {
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2",
+    "react-native": "^0.66.3",
+    "react-use": "^17.3.1"
+  },
+  "devDependencies": {
+    "@types/react": "^17.0.35",
+    "@types/react-native": "^0.66.4"
   }
 }
