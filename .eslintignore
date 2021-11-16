@@ -8,8 +8,10 @@ docs
 examples
 
 # ignore built packages
-packages/**/dist/**
-packages/**/build/**
+dist/
+build/
+
+__generated__/
 
 # fixtures
 **/__testfixtures__/**
