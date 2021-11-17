@@ -1,15 +1,12 @@
-import "expo-dev-client";
-import { NativeBaseProvider, extendTheme } from "native-base";
+// import { NativeBaseProvider } from "native-base";
 import React from "react";
 import RootNavigator from "./navigators/RootNavigator";
-import { theme } from "@hamburger/recipe";
+import { theme as AppTheme } from "@hamburger/recipe";
+import { extendTheme } from "native-base";
 
-const App: React.FC<unknown> = () => {
-  return (
-    <NativeBaseProvider theme={extendTheme(theme)}>
-      <RootNavigator />
-    </NativeBaseProvider>
-  );
-};
+const theme = extendTheme(AppTheme);
 
-export default App;
+export default function App() {
+  console.log(theme);
+  return <RootNavigator />;
+}
