@@ -1,5 +1,5 @@
-import { createStackNavigator } from "@react-navigation/stack";
 import React from "react";
+import { createStackNavigator } from "@react-navigation/stack";
 import { Login } from "../screens";
 
 export type RootNavigatorScreenList = {
@@ -11,7 +11,11 @@ const Stack = createStackNavigator<RootNavigatorScreenList>();
 
 const AuthNavigator: React.FC<unknown> = () => {
   return (
-    <Stack.Navigator>
+    <Stack.Navigator
+      screenOptions={{
+        headerShown: false,
+      }}
+    >
       <Stack.Screen name='Login' component={Login} />
     </Stack.Navigator>
   );
