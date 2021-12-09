@@ -12,7 +12,7 @@
   ],
   "dependencies": {
     "@apollo/client": "3.4.17",
-    "@craco/craco": "6.4.0",
+    "@craco/craco": "6.4.3",
     "@hamburger/ketchup": "0.0.0",
     "@hamburger/recipe": "0.0.0",
     "@hamburger/lettuce": "0.0.0",
