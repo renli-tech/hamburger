@@ -1,5 +1,5 @@
 import { Directive, ObjectType, Field, ID } from "type-graphql";
-import { BaseEntity, Entity, ObjectIdColumn } from "typeorm";
+import { BaseEntity, Column, Entity, ObjectIdColumn } from "typeorm";
 
 export type Role = "ADMIN" | "USER";
 
@@ -15,8 +15,10 @@ class User extends BaseEntity {
 
   @Directive("@external")
   @Field()
+  @Column()
   username: string;
 
+  @Column()
   role: Role;
 }
 

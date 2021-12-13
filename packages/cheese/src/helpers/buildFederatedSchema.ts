@@ -1,5 +1,5 @@
 import { printSchema, GraphQLSchema } from "graphql";
-import gql from "graphql-tag";
+import { gql } from "apollo-server";
 import { buildSubgraphSchema } from "@apollo/subgraph";
 import { addResolversToSchema, GraphQLResolverMap } from "apollo-graphql";
 import {

@@ -25,7 +25,7 @@ class Server {
   async start(): Promise<void> {
     this._server.listen(PORT, () =>
       this.logger.success(
-        `Server started at http://localhost:${PORT}${GRAPHQL_PATH} 🚀` + "\n"
+        `Server started at http://localhost:${PORT}${GRAPHQL_PATH} 🚀`
       )
     );
 

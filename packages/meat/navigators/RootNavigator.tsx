@@ -21,7 +21,7 @@ export const navigationOptions:
   | StackNavigationOptions
   | ((props: {
       route: RouteProp<RootNavigatorScreenList, keyof RootNavigatorScreenList>;
-      navigation: any;
+      navigation: unknown;
     }) => StackNavigationOptions)
   | undefined = {
   headerShown: false,
