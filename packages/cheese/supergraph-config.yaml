@@ -1,0 +1,10 @@
+# USER POST
+subgraphs:
+  user:
+    routing_url: http://localhost:4001/user
+    schema:
+      file: src/subgraphs/user.graphql
+  post:
+    routing_url: http://localhost:4001/post
+    schema:
+      file: src/subgraphs/post.graphql

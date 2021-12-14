@@ -1,20 +1,25 @@
 import { listen } from "../../modules/listen";
-import { PORT } from "../../config";
 import User from "./user.entity";
 import UserResolver from "./user.resolver";
 import { resolveUserReference } from "./user.reference";
+import { createSubgraph } from "../../helpers/createSubgraph";
 
 export * from "./user.entity";
 export * from "./user.resolver";
 
+const name = "user";
+
 export async function init(): Promise<string> {
-  return await listen(
+  const { url, schema } = await listen(
     {
-      name: "user",
-      port: parseInt(`${PORT}`) + 1,
+      name,
       orphanedTypes: [User],
       resolvers: [UserResolver],
     },
     { __resolveReference: resolveUserReference }
   );
+
+  await createSubgraph(name, schema);
+
+  return url;
 }

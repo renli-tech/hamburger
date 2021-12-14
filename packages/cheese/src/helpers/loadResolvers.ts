@@ -7,7 +7,7 @@ export type NonEmptyArray<TItem> =
 export type Resolvers = NonEmptyArray<Function> | NonEmptyArray<string>;
 
 export function loadResolvers(): Resolvers {
-  const filePaths = glob.sync(__dirname + "/**/*.resolver.{js,ts}");
+  const filePaths = glob.sync(__dirname + "/../**/*.resolver.{js,ts}");
   const modules: { resolvers: Function[]; default: Function }[] =
     filePaths.map(require);
   return modules

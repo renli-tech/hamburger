@@ -1,19 +1,24 @@
 /* eslint-disable  @typescript-eslint/ban-types */
 import { ApolloServer } from "apollo-server";
+import { ApolloServerPluginInlineTraceDisabled } from "apollo-server-core";
+import { GraphQLSchema } from "graphql";
+import { PORT } from "../config";
 import { buildFederatedSchema } from "../helpers/buildFederatedSchema";
 import { Resolvers } from "../helpers/loadResolvers";
 import { Logger } from "./Logger";
+import { blue } from "chalk";
+
+export const usedPort: { name: string; port: number }[] = [];
 
 export const listen = async (
   config: {
     name: string;
-    port: number;
     resolvers: Resolvers;
     orphanedTypes: Function[];
   },
   refObj?: {}
-): Promise<string> => {
-  const { name, port, resolvers, orphanedTypes } = config;
+): Promise<{ url: string; schema: GraphQLSchema }> => {
+  const { name, resolvers, orphanedTypes } = config;
 
   const schema = await buildFederatedSchema(
     {
@@ -25,10 +30,19 @@ export const listen = async (
 
   const server = new ApolloServer({
     schema,
+    plugins: [ApolloServerPluginInlineTraceDisabled],
   });
 
-  const { url } = await server.listen({ port });
-  Logger.success(`${name} graph ready at ${url}`);
+  const { url } = await server.listen({ port: await getPort(name) });
+  Logger.success(`${blue(name)} subgraph ready at ${url}`);
 
-  return url;
+  return { url, schema };
+};
+
+const getPort = async (name: string) => {
+  const parentPort = PORT;
+  const nextPort = parseInt(parentPort.toString()) + usedPort.length + 1;
+
+  usedPort.push({ name, port: nextPort });
+  return nextPort;
 };

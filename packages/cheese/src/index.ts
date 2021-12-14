@@ -10,9 +10,9 @@ import { JWT_AUTH } from "./config";
 import { PubSub } from "graphql-subscriptions";
 import getConnection from "./helpers/getConnection";
 import { loadEntities } from "./helpers/loadEntities";
-import * as User from "./entities/user";
-import { ApolloGateway, ServiceEndpointDefinition } from "@apollo/gateway";
+import { ApolloGateway } from "@apollo/gateway";
 import chalk from "chalk";
+import { getServiceList } from "./helpers/getServiceList";
 
 /**
  * The Cheese
@@ -27,7 +27,7 @@ class Cheese extends Server {
   }
 
   /**
-   * @description Initializing the world cheeses server
+   * @description Initializing the world most cheessy server
    * Basically the entry point
    */
   async init() {
@@ -77,15 +77,11 @@ class Cheese extends Server {
     const pubSub = new PubSub();
 
     // Service List
-    const serviceList: ServiceEndpointDefinition[] = [
-      { name: "user", url: await User.init() },
-    ];
+    const serviceList = await getServiceList();
 
-    // Gateway
     const gateway = new ApolloGateway({
       serviceList,
     });
-
     const { schema, executor } = await gateway.load();
 
     const apolloServer = new ApolloServer({

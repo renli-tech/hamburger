@@ -1,20 +1,25 @@
-import { PORT } from "../../config";
 import { listen } from "../../modules/listen";
-import GraphNameResolver from "./graphImport.resolver";
 import GraphName from "./graphImport.entity";
+import GraphNameResolver from "./graphImport.entity";
 import { resolveGraphNameReference } from "./graphImport.reference";
+import { createSubgraph } from "../../helpers/createSubgraph";
 
 export * from "./graphImport.entity";
 export * from "./graphImport.resolver";
 
+const name = "graphImport";
+
 export async function init(): Promise<string> {
-  return await listen(
+  const { url, schema } = await listen(
     {
-      name: "user",
-      port: parseInt(`${PORT}`) + 2,
+      name,
       orphanedTypes: [GraphName],
       resolvers: [GraphNameResolver],
     },
     { __resolveReference: resolveGraphNameReference }
   );
+
+  await createSubgraph(name, schema);
+
+  return url;
 }

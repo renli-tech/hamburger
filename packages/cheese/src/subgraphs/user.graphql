@@ -1,0 +1,10 @@
+type User {
+  id: ID!
+  username: String!
+}
+
+type Query {
+  _service: _Service!
+  hello: String!
+  users: [User!]!
+}

@@ -11,6 +11,7 @@ export const PORT = process.env.PORT || 4000;
 
 // GRAPHQL PATH
 export const GRAPHQL_PATH = "/graphql";
+export const ENTITY_DIR = "entities";
 
 // RESOLVER PATHS
 export const RESOLVER_PATHS = "/resolvers/**/*Resolver.{js,ts}";

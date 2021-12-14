@@ -1,20 +1,23 @@
 import inquirer from "inquirer";
 import { mkdir, readdir, readFile, writeFile } from "fs-extra";
 import { Logger } from "../modules/Logger";
+import { ENTITY_DIR } from "../config";
 
 Logger.info("Create a new Graph");
 
 // Create files in the graph directory
 const createFiles = (graphName: string, list: string[]) => {
   list.forEach((item) => {
-    const fileName = `${graphName}.${item}.ts`;
+    const fileName = item === "index" ? "index.ts" : `${graphName}.${item}.ts`;
 
     Logger.info(`Creating file ${fileName}`);
 
     readdir(`./src/cli/boilerplates`).then((files) => {
+      // create files
       files.forEach(async (file) => {
         if (file.includes(item)) {
-          readdir(`./src/graphs/${graphName}`).then((files) => {
+          readdir(`./src/${ENTITY_DIR}/${graphName}`).then((files) => {
+            // check if file doesnt already exists
             if (!files.includes(fileName)) {
               readFile(`./src/cli/boilerplates/${file}`, "utf8").then(
                 (fileContent) => {
@@ -28,7 +31,7 @@ const createFiles = (graphName: string, list: string[]) => {
                     graphName
                   );
                   writeFile(
-                    `./src/graphs/${graphName}/${fileName}`,
+                    `./src/${ENTITY_DIR}/${graphName}/${fileName}`,
                     newFileContent,
                     "utf8"
                   ).then(() => {
@@ -77,7 +80,7 @@ inquirer
     const filesList: string[] = answers.filesList;
 
     // create the directory;
-    mkdir(`./src/graphs/${name}`)
+    mkdir(`./src/${ENTITY_DIR}/${name}`)
       .then(() => {
         createFiles(
           name,

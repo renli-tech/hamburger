@@ -13,7 +13,8 @@
   "scripts": {
     "start": "ts-node --script-mode ./src/index.ts",
     "dev": "nodemon --exec ts-node --script-mode ./src/index.ts",
-    "test": "jest "
+    "test": "jest ",
+    "addNewSubgraph": "ts-node --script-mode ./src/cli/addNewSubgraph.ts"
   },
   "browserslist": {
     "production": [

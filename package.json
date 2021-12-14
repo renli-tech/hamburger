@@ -22,6 +22,7 @@
     "dev:ketchup": "yarn --cwd ./packages/ketchup run dev ",
     "dev:lettuce": "yarn --cwd ./packages/lettuce run dev ",
     "dev:bun": "yarn --cwd ./packages/bun run dev ",
+    "cheese:addNewSubgraph": "yarn --cwd ./packages/cheese run addNewSubgraph",
     "bootstrap": "lerna bootstrap --use-workspaces && yarn hooks:install",
     "fix": "run-s fix:*",
     "fix:code": "yarn lint:code --fix",
