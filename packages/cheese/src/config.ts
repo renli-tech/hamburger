@@ -1,8 +1,11 @@
+import { Options } from "express-jwt";
+
 export const { DATABASE_URl, APP_AUTH_SECRET, APP_SECRET } = process.env;
 
 // JWT_AUTH
-export const JWT_AUTH = {
-  secret: APP_AUTH_SECRET,
+export const JWT_AUTH: Options = {
+  // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+  secret: APP_AUTH_SECRET!,
   credentialsRequired: false,
   algorithms: ["HS256"],
 };

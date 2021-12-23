@@ -1,9 +1,10 @@
-type User {
+type User @key(fields: "id") {
   id: ID!
   username: String!
 }
 
 type Query {
+  _entities(representations: [_Any!]!): [_Entity]!
   _service: _Service!
   hello: String!
   users: [User!]!

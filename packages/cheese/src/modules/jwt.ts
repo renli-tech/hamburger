@@ -2,28 +2,16 @@
 import { Response } from "express";
 import jwt from "jsonwebtoken";
 
-import { APP_AUTH_SECRET, APP_SECRET } from "../config";
+import { APP_AUTH_SECRET } from "../config";
 
 type Payload = Record<string, unknown>;
 
-export const createToken = (
-  payload: Payload,
-  options?: jwt.SignOptions
-): string => {
-  const token = jwt.sign(payload, APP_SECRET!, {
-    issuer: "@hamburger/cheese",
-    audience: ["@hamburger/bun", "@hamburger/meat"],
-    expiresIn: "4w",
-    ...options,
-  });
-  return token;
-};
-
 export const createAuthToken = (payload: Payload): string => {
   const token = jwt.sign(payload, APP_AUTH_SECRET!, {
-    issuer: "@hamburger/cheese",
-    audience: ["@hamburger/bun", "@hamburger/meat"],
+    issuer: "@humor/cheese",
+    audience: ["@humor/bun", "@humor/meat"],
     expiresIn: "4w",
+    algorithm: "HS256",
   });
   return token;
 };

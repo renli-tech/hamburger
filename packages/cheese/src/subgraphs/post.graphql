@@ -1,7 +1,16 @@
-type Post {
+type Post @key(fields: "id") {
   id: ID!
+  caption: String!
+  postedById: String!
+  datePosted: DateTime!
 }
 
+"""
+The javascript `Date` as string. Type represents date and time as the ISO Date string.
+"""
+scalar DateTime
+
 type Query {
+  _entities(representations: [_Any!]!): [_Entity]!
   _service: _Service!
 }

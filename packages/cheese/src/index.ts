@@ -4,13 +4,13 @@ import Server from "./modules/server";
 import jwt, { Options } from "express-jwt";
 import cookieParser from "cookie-parser";
 import { ApolloServer } from "apollo-server-express";
-import { ExpressContext } from "./modules/express";
+import { ExpressContext, ExpressRequest } from "./modules/express";
 import { createConnection } from "typeorm";
 import { JWT_AUTH } from "./config";
 import { PubSub } from "graphql-subscriptions";
 import getConnection from "./helpers/getConnection";
 import { loadEntities } from "./helpers/loadEntities";
-import { ApolloGateway } from "@apollo/gateway";
+import { ApolloGateway, RemoteGraphQLDataSource } from "@apollo/gateway";
 import chalk from "chalk";
 import { getServiceList } from "./helpers/getServiceList";
 
@@ -79,20 +79,45 @@ class Cheese extends Server {
     // Service List
     const serviceList = await getServiceList();
 
+    type Context = { req: ExpressRequest };
+
     const gateway = new ApolloGateway({
       serviceList,
+      buildService({ name, url }) {
+        return new RemoteGraphQLDataSource<Context>({
+          url,
+          willSendRequest({ request, context }) {
+            const { req } = context as Context;
+            // console.log("recive req",req.headers["authorization"]);
+
+            if (req) {
+              request.http?.headers.set(
+                "user",
+                req.user ? JSON.stringify(req.user) : ""
+              );
+              request.http?.headers.set(
+                "authorization",
+                req.headers["authorization"] || ""
+              );
+            }
+          },
+        });
+      },
     });
-    const { schema, executor } = await gateway.load();
 
     const apolloServer = new ApolloServer({
-      context: ({ req, res }: ExpressContext) => ({ req, res, pubSub }),
-      schema,
-      executor,
+      context: ({ req, res }: ExpressContext) => {
+        return { req, res, pubSub };
+      },
+      gateway,
     });
 
     // Starting the Apollo server
     await apolloServer.start();
-    apolloServer.applyMiddleware({ app: this.app, cors: true });
+    await apolloServer.applyMiddleware({
+      app: this.app,
+      cors: { credentials: true, origin: "https://studio.apollographql.com" },
+    });
     this.logger.success("Apollo setup correctly");
   }
 }

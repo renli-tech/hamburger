@@ -1,6 +1,6 @@
-import { printSchema, GraphQLSchema } from "graphql";
+import { GraphQLSchema } from "graphql";
 import { gql } from "apollo-server";
-import { buildSubgraphSchema } from "@apollo/subgraph";
+import { printSubgraphSchema, buildSubgraphSchema } from "@apollo/subgraph";
 import { addResolversToSchema, GraphQLResolverMap } from "apollo-graphql";
 import {
   buildSchema,
@@ -21,7 +21,7 @@ export async function buildFederatedSchema(
   });
 
   const federatedSchema = buildSubgraphSchema({
-    typeDefs: gql(printSchema(schema)),
+    typeDefs: gql(printSubgraphSchema(schema)),
     resolvers: createResolversMap(schema) as GraphQLResolverMap<unknown>,
   });
 
