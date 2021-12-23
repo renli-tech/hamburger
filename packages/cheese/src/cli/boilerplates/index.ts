@@ -1,6 +1,6 @@
 import { listen } from "../../modules/listen";
 import GraphName from "./graphImport.entity";
-import GraphNameResolver from "./graphImport.entity";
+import GraphNameResolver from "./graphImport.resolver";
 import { resolveGraphNameReference } from "./graphImport.reference";
 import { createSubgraph } from "../../helpers/createSubgraph";
 
