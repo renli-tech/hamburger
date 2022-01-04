@@ -18,7 +18,7 @@
     "@hamburger/lettuce": "0.0.0",
     "@testing-library/user-event": "13.5.0",
     "@types/jest": "27.0.2",
-    "@types/node": "16.11.7",
+    "@types/node": "16.11.19",
     "@types/react": "17.0.35",
     "@types/react-dom": "17.0.11",
     "formik": "2.2.9",
