@@ -17,7 +17,7 @@
     "@hamburger/recipe": "0.0.0",
     "@hamburger/lettuce": "0.0.0",
     "@testing-library/user-event": "13.5.0",
-    "@types/jest": "27.0.2",
+    "@types/jest": "27.5.2",
     "@types/node": "16.11.7",
     "@types/react": "17.0.38",
     "@types/react-dom": "17.0.11",
