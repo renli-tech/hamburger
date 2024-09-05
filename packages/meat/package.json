@@ -25,7 +25,7 @@
     ]
   },
   "dependencies": {
-    "@apollo/client": "3.4.17",
+    "@apollo/client": "3.11.8",
     "@hamburger/ketchup": "0.0.0",
     "@hamburger/lettuce": "0.0.0",
     "@hamburger/recipe": "0.0.0",

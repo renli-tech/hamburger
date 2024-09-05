@@ -11,7 +11,7 @@
     "dist"
   ],
   "dependencies": {
-    "@apollo/client": "3.4.17",
+    "@apollo/client": "3.11.8",
     "@craco/craco": "6.4.0",
     "@hamburger/ketchup": "0.0.0",
     "@hamburger/recipe": "0.0.0",
