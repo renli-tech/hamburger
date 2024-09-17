@@ -60,7 +60,7 @@
   },
   "devDependencies": {
     "@babel/core": "7.16.0",
-    "@types/react": "17.0.38",
+    "@types/react": "17.0.82",
     "@types/react-native": "0.66.4",
     "expo-yarn-workspaces": "1.6.0",
     "metro-config": "0.66.2",
