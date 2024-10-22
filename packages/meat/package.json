@@ -59,7 +59,7 @@
     "yup": "^0.32.11"
   },
   "devDependencies": {
-    "@babel/core": "7.16.0",
+    "@babel/core": "7.25.9",
     "@types/react": "17.0.38",
     "@types/react-native": "0.66.4",
     "expo-yarn-workspaces": "1.6.0",
